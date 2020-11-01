@@ -11,7 +11,7 @@ Actions:
 import pandas as pd
 from datetime import datetime
 from loyverse.api import Api
-from loyverse.endpoints.fields import receipt_fields
+from loyverse.endpoints.fields import receipt as fields
 
 
 class Receipts:
@@ -26,16 +26,17 @@ class Receipts:
 
         Args:
             **kwargs:  all possible value-pairs that can be used to query the list
-            # TODO: List here the query parameters
         Returns:
             response (dict): un-formatted receipts information (JSON)
         """
+        # TODO: List the query parameters
 
         return self._api.request('GET', self._path, params=kwargs)
 
     def get_by_id(self, receipt_id: str):
         """
         Retrieves the receipts information for a specific receipt ID
+
         Args:
             receipt_id (str): string uniquely identifying the receipt to be retrieved
         Returns:
@@ -47,6 +48,7 @@ class Receipts:
     def get_by_date(self, date: datetime):
         """
         Retrieve receipts information for a specific day
+
         Args:
             date (datetime): datetime object representing day in question (including time zone info)
         Returns:
@@ -63,6 +65,7 @@ class Receipts:
     def get_by_dates(self, start_date: datetime, end_date: datetime = datetime.now()):
         """
         Retrieves receipts information for a specific date interval.
+
         Args:
             start_date (datetime): start date, including time-zone info
             end_date (datetime): end date, including time-zone info (if not provided, defaults to datetime.now())
@@ -78,6 +81,7 @@ class Receipts:
     def _receipt_to_dataframes(receipt: dict):
         """
         Formats one receipts object into three dataframes, containing receipts and items information.
+
         Args:
             receipt (dict): a receipt object
         Returns:
@@ -89,14 +93,14 @@ class Receipts:
         if 'receipts' in receipt:
             raise ValueError('Invalid receipt object passed in, should not contain - receipts - field')
 
-        receipt_id = receipt['receipt_number']
+        id_key = 'receipt_number'
 
-        receipt_df = pd.DataFrame({key: receipt[key] for key in receipt_fields.receipt}, index=[0])
+        receipt_df = pd.DataFrame({key: receipt[key] for key in fields.receipt}, index=[0])
 
         items_df = []
         for line_item in receipt['line_items']:
-            item = {key: line_item[key] for key in receipt_fields.item}
-            item['receipt_number'] = receipt_id
+            item = {key: line_item[key] for key in fields.item}
+            item[id_key] = receipt[id_key]
             item = pd.DataFrame(item, index=[0])
             items_df.append(item)
 
@@ -104,14 +108,14 @@ class Receipts:
 
         payments_df = []
         for payment_item in receipt['payments']:
-            payment = {key: payment_item[key] for key in receipt_fields.payment}
-            payment['receipt_number'] = receipt_id
+            payment = {key: payment_item[key] for key in fields.payment}
+            payment[id_key] = receipt[id_key]
             details = payment_item['payment_details']
 
             if details is None:
-                payment_details = {key: None for key in receipt_fields.payment_details}
+                payment_details = {key: None for key in fields.payment_details}
             else:
-                payment_details = {key: details[key] for key in receipt_fields.payment_details}
+                payment_details = {key: details[key] for key in fields.payment_details}
 
             payment = {**payment, **payment_details}
             payment = pd.DataFrame(payment, index=[0])
@@ -125,6 +129,7 @@ class Receipts:
     def to_dataframes(response: dict):
         """
         Formats receipts API return data into three dataframes (receipts, items, payments)
+
         Args:
             response (dict): receipt endpoint response
         Returns:

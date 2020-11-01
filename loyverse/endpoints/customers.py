@@ -2,6 +2,7 @@
 Customers endpoint wrapper class
 
 Actions:
+
 * get_by_query: get customers that respect passed in query parameters
 * get_by_id: get customer by passing valid ID
 """
@@ -21,16 +22,17 @@ class Customers:
 
         Args:
             **kwargs:  all possible value-pairs that can be used to query the list
-            # TODO: List here the query parameters
         Returns:
             response (dict): un-formatted customers information (JSON)
         """
+        # TODO: List here the query parameters
 
         return self._api.request('GET', self._path, params=kwargs)
 
     def get_by_id(self, customer_id: str):
         """
         Retrieves the receipts information for a specific receipt ID
+
         Args:
             customer_id (str): string uniquely identifying the receipt to be retrieved
         Returns:

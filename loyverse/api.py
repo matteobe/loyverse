@@ -32,10 +32,12 @@ class Api:
     def request(self, method: str, path: str, params: dict = None):
         """
         API request method
+
         Args:
             method (str): HTTP method (GET, POST, PUT, PATCH, DELETE)
             path (str): API resource path
             params (dict): query parameters dictionary for passed-in path
+
         Returns:
             response (dict): un-parsed JSON response
         """

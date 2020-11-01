@@ -1,20 +1,57 @@
-.. Loyverse API documentation master file, created by
-   sphinx-quickstart on Tue Oct 13 00:52:22 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+:notoc:
 
-Welcome to Loyverse API's documentation!
-========================================
+Welcome to the loyverse API wrapper documentation!
+===================================================
+
+.. TODO: Make string substitution work with custom variables defined in the config file
+.. Project: |project|
+
+.. Getting started
+.. raw:: html
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+                <div class="card text-center intro-card shadow">
+                <div class="card-body flex-fill">
+                    <img src="_static/getting_started.svg" class="card-img-top" alt="Getting started" height="60">
+                    <h5 class="card-title">Getting started</h5>
+                    <p class="card-text">Check out the getting started guide, to quickly grasp the loyverse API wrapper</p>
+
+.. TODO: Fix the custom-buttom and image position in landing page.
+.. container:: custom-button
+
+    :ref:`To the getting started guide<getting_started>`
+
+.. API reference
+.. raw:: html
+
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+                <div class="card text-center intro-card shadow">
+                <div class="card-body flex-fill">
+                    <img src="_static/api.svg" class="card-img-bottom" alt="API reference" height="60">
+                    <h5 class="card-title">API reference</h5>
+                    <p class="card-text">The reference guide contains a detailed description of the loyverse API
+                        wrapper. The reference describes the classes and functions that can be used.</p>
+
+.. container:: custom-button
+
+    :ref:`To the reference guide<api>`
+
+.. raw:: html
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 3
+    :hidden:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    getting_started/index
+    reference/index

@@ -1,15 +1,18 @@
 """
-Loyverse API client
-
 The Client class encapsulates the endpoints of the Loyverse API and provides a single point of initialization for
 API requests.
 
 The Client class exposes the following end-points
+
 * receipts
-    * list:  GET /receipts
-    * id: GET /receipts/<id>
+
+    * get_by_query: GET /receipts
+    * get_by_id: GET /receipts/<id>
+
 * customers
-    * id: GET /customers/<id>
+
+    * get_by_id: GET /customers/<id>
+
 """
 
 from loyverse.api import Api
@@ -17,6 +20,7 @@ from loyverse.api import Api
 
 class Client:
     """Loyverse API client
+
     Args:
         access_token (str): Access token string to be used to initialize the client
     """
@@ -53,6 +57,7 @@ class Client:
     def customers(self):
         """
         Customers endpoint
+
         Returns:
             customers (loyverse.endpoints.Customer): Customer endpoint wrapper
         """
@@ -66,6 +71,7 @@ class Client:
     def receipts(self):
         """
         Receipts endpoint
+
         Returns:
             receipts (loyverse.endpoints.Receipts): Receipts endpoint wrapper
         """
