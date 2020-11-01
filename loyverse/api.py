@@ -9,7 +9,7 @@ from loyverse.exceptions import AccessTokenMissingError
 
 
 class Api:
-    """Base properties for all endpoints"""
+    """Base API properties for all endpoints"""
 
     def __init__(self, access_token: str = None):
 

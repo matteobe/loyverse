@@ -1,9 +1,12 @@
 # Loyverse API wrapper
 The loyverse package provides a wrapper around the Loyverse API (v1.0).
 
-Currently the package implements the following objects:
-* Receipts
+Currently the package implements the following endpoints:
 * Customers
+* Receipts
+
+## Getting started
+
 
 ### Setup
 #### Documentation
