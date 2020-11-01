@@ -1,10 +1,10 @@
 :notoc:
 
-Welcome to the loyverse API wrapper documentation!
-===================================================
+.. Substitutions
+.. |project| replace:: loyverse
 
-.. TODO: Make string substitution work with custom variables defined in the config file
-.. Project: |project|
+Welcome to the Loyverse API wrapper documentation!
+===================================================
 
 .. Getting started
 .. raw:: html
@@ -18,7 +18,6 @@ Welcome to the loyverse API wrapper documentation!
                     <h5 class="card-title">Getting started</h5>
                     <p class="card-text">Check out the getting started guide, to quickly grasp the loyverse API wrapper</p>
 
-.. TODO: Fix the custom-buttom and image position in landing page.
 .. container:: custom-button
 
     :ref:`To the getting started guide<getting_started>`

@@ -14,7 +14,7 @@ for a detailed description on how to create one.
 Initialize a client
 -------------------
 
-The Loyverse API is accessed using a single client, which we can use to access all endpoints.
+The Loyverse API is accessed using a single client, which can in turn be used to access all implemented endpoints.
 
 .. code-block:: python
 
@@ -23,13 +23,13 @@ The Loyverse API is accessed using a single client, which we can use to access a
     # Initialize by passing access token
     client = Client(access_token='your_token_here')
 
-    # Initialize using environment variables (access_token stored under LOYVERSE_ACCESS_TOKEN)
+    # Initialize using environment variables (access_token stored in environment variable: LOYVERSE_ACCESS_TOKEN)
     client = Client()
 
 Access endpoints
 ----------------
 
-Once the client is initialized we can access endpoints by accessing attributes of the client object.
+Once the client is initialized, we can access endpoints by accessing attributes of the client object.
 Currently, the following endpoints are available:
 
 * Customers

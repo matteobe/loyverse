@@ -2,6 +2,7 @@
 Receipts endpoint wrapper class
 
 Actions:
+
 * get_by_query: get receipts that respect passed in query parameters
 * get_by_id: get receipt passing valid ID
 * get_by_date: get receipts for a given date
