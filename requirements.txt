@@ -2,15 +2,18 @@
 requests>=2.24.0
 
 # Data analysis
-numpy>=1.19.3
+numpy>=1.19.4
 pandas>=1.1.4
 
 # Testing
 pytest>=6.1.2
 vcrpy>=4.1.1
 
+# Code stlye control
+flake8>=3.8.4
+
 # Documentation
-sphinx>=3.2.1
+sphinx>=3.3.0
 pydata-sphinx-theme>=0.4.1
 
 # Secrets management

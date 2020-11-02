@@ -1,13 +1,11 @@
 # Publish package to TestPyPi
 
-name: build and publish package to TestPyPi
+name: Build and publish package to TestPyPi
 on:
   push:
     branches:
       - master
 
-# TODO: Implement testing before building
-# TODO: Implement workflow for PyPi
 jobs:
   build-and-publish:
     name: Build and publish to TestPyPi

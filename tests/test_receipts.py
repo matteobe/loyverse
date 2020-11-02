@@ -8,7 +8,7 @@ Tests:
 
 from datetime import datetime
 from loyverse import Client
-from tests.utils import save_json, error_msg
+from tests.utils import error_msg
 
 
 endpoint = 'receipts'
@@ -25,7 +25,6 @@ def test_get_by_id():
     client = Client()
     receipt = client.receipts.get_by_id(receipt_id)
 
-    save_json(receipt, 'receipt')
     assert isinstance(receipt, dict), error_msg(endpoint, 'get_by_id return type not of type: dict')
     assert receipt['receipt_number'] == receipt_id, error_msg(endpoint, 'receipt ID should be in the response')
 
@@ -42,7 +41,6 @@ def test_get_by_date():
     client = Client()
     receipts = client.receipts.get_by_date(date)
 
-    save_json(receipts, 'receipts')
     assert isinstance(receipts, dict), error_msg(endpoint, 'get_by_date return type not of type dict')
     assert len(receipts['receipts']) == receipts_length, error_msg(endpoint, 'get_by_date: incorrect number of '
                                                                              'receipts retrieved')
