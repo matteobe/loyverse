@@ -5,14 +5,7 @@ API requests.
 The Client class exposes the following end-points
 
 * receipts
-
-    * get_by_query: GET /receipts
-    * get_by_id: GET /receipts/<id>
-
 * customers
-
-    * get_by_id: GET /customers/<id>
-
 """
 
 from loyverse.api import Api
