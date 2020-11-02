@@ -17,6 +17,9 @@ jobs:
         with:
           python-version: 3.7
 
+      - name: Install required packages
+        run: python3 -m pip install --user --upgrade wheel
+
       - name: Build distributions
         run: python3 setup.py sdist bdist_wheel
 
