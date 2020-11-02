@@ -1,4 +1,9 @@
 # Loyverse API wrapper
+
+[![PyPi](https://img.shields.io/pypi/v/loyverse)](https://img.shields.io/pypi/v/loyverse)
+[![Documentation](https://readthedocs.org/projects/loyverse/badge/?version=latest)](https://loyverse.readthedocs.io/en/latest/?badge=latest)
+[![License](https://img.shields.io/github/license/matteobe/loyverse)](https://img.shields.io/github/license/matteobe/loyverse)
+
 The loyverse package provides a wrapper around the Loyverse API (v1.0).
 
 Currently the package implements the following endpoints:
