@@ -1,13 +1,16 @@
-# Publish package to TestPyPi
+# Publish package to PyPi
 
-name: build and publish package to TestPyPi
-on: push
+name: build and publish package to PyPi
+# TODO: Check running criteria for script
+on:
+  push:
+    tags:
+      - v*
 
 # TODO: Implement testing before building
-# TODO: Implement workflow for PyPi
 jobs:
   build-and-publish:
-    name: Build and publish to TestPyPi
+    name: build and publish to PyPi
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout repository
@@ -24,8 +27,8 @@ jobs:
       - name: Build distributions
         run: python3 setup.py sdist bdist_wheel
 
-      - name: Publish to TestPyPi
+      - name: Publish to PyPi
         uses: pypa/gh-action-pypi-publish@master
         with:
-          password: ${{ secrets.testpypi_token }}
-          repository_url: https://test.pypi.org/legacy/
+          user: __token__
+          # password: ${{ secrets.pypi_all }}

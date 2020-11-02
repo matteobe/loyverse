@@ -2,12 +2,7 @@
 requests>=2.24.0
 
 # Data analysis
-numpy>=1.19.3
 pandas>=1.1.4
-
-# Testing
-pytest>=6.1.2
-vcrpy>=4.1.1
 
 # Documentation
 sphinx>=3.2.1
@@ -15,7 +10,3 @@ pydata-sphinx-theme>=0.4.1
 
 # Secrets management
 python-dotenv>=0.15.0
-# TODO: Implement git-secret system for storage of secrets alongside repository
-
-# Development
-jupyter>=1.0.0
