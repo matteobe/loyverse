@@ -10,3 +10,5 @@ __author__ = "Matteo Berchier <maberchier(at)gmail.com>"
 __copyright__ = "(c) 2020, Matteo Berchier"
 
 from loyverse.client import Client
+
+__all__ = ('Client',)
