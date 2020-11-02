@@ -8,7 +8,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 
 setup(name='loyverse',
-      version='0.0.1',
+      version='0.0.2',
       description='Loyverse API wrapper',
       url='https://github.com/matteobe/loyverse',
       packages=[
