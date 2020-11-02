@@ -1,0 +1,27 @@
+# Publish package to TestPyPi
+
+name: build and publish package to TestPyPi
+on: push
+
+# TODO: Implement testing before building
+jobs:
+  build-and-publish:
+    name: Build and publish to TestPyPi
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - name: Setup Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Build distributions
+        run: python3 setup.py sdist bdist_wheel
+
+      - name: Publish to TestPyPi
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.testpypi_all }}
+          repository_url: https://test.pypi.org/legacy/

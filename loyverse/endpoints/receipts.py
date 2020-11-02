@@ -76,7 +76,7 @@ class Receipts:
 
         timestamp = f"{start_date.strftime('%Y-%m-%d')}T00:00:00.000Z"
 
-        return self.get_by_query(created_at_min=timestamp)
+        return self.get_by_query(created_at_min=timestamp, limit=250)
 
     @staticmethod
     def _receipt_to_dataframes(receipt: dict):
