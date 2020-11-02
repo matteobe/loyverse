@@ -20,10 +20,10 @@ jobs:
           python-version: 3.7
 
       - name: Install required packages
-        run: python3 -m pip install --user flake8 pytest
+        run: python3 -m pip install --user --upgrade flake8 pytest
 
       - name: Code style check
-        run: flake8 --verbose --config=setup.cfg --exit-zero .
+        run: python3 -m flake8 --verbose --config=setup.cfg --exit-zero .
 
       - name: Test codebase
-        run: pytest -v -s
+        run: python3 -m pytest -v -s
