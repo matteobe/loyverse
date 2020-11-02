@@ -21,9 +21,9 @@ LICENSE = 'MIT'
 REPOSITORY = 'https://github.com/matteobe/loyverse'
 HOMEPAGE = 'https://loyverse.readthedocs.io'
 PROJECT_URLS = {
-    'Source Code': REPOSITORY,
-    'Documentation': 'https://loyverse.readthedocs.io',
     'Bug Tracker': f'{REPOSITORY}/issues',
+    'Documentation': 'https://loyverse.readthedocs.io',
+    'Source Code': REPOSITORY,
 }
 DOWNLOAD_URL = ''
 

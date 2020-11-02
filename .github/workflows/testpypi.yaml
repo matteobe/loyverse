@@ -3,7 +3,7 @@
 name: build and publish package to TestPyPi
 on:
   push:
-    branch:
+    branches:
       - master
 
 # TODO: Implement testing before building
