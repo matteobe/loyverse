@@ -3,7 +3,7 @@ from setuptools import setup
 
 # Project
 NAME = 'loyverse'
-VERSION = '0.0.3'
+VERSION = '0.0.4'
 
 # Maintainer
 MAINTAINER = 'Matteo Berchier'
@@ -19,13 +19,13 @@ LICENSE = 'MIT'
 
 # Project URLs
 REPOSITORY = 'https://github.com/matteobe/loyverse'
-HOMEPAGE = REPOSITORY
+HOMEPAGE = 'https://loyverse.readthedocs.io'
 PROJECT_URLS = {
-    'Bug Tracker': f'{REPOSITORY}/issues',
-    'Documentation': REPOSITORY,
     'Source Code': REPOSITORY,
+    'Documentation': 'https://loyverse.readthedocs.io',
+    'Bug Tracker': f'{REPOSITORY}/issues',
 }
-DOWNLOAD_URL = ""
+DOWNLOAD_URL = ''
 
 # Classifiers
 CLASSIFIERS = [
