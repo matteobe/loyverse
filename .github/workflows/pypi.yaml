@@ -1,6 +1,6 @@
 # Publish package to PyPi
 
-name: Build and publish package to PyPi
+name: Build and publish to PyPi
 # TODO: Check running criteria for script
 on:
   push:

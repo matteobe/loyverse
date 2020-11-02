@@ -1,6 +1,6 @@
 # Publish package to TestPyPi
 
-name: Build and publish package to TestPyPi
+name: Build and publish to TestPyPi
 on:
   push:
     branches:

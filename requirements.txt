@@ -19,6 +19,3 @@ pydata-sphinx-theme>=0.4.1
 # Secrets management
 python-dotenv>=0.15.0
 # TODO: Implement git-secret system for storage of secrets alongside repository
-
-# Development
-jupyter>=1.0.0
