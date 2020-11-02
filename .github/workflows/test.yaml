@@ -23,7 +23,7 @@ jobs:
         run: python3 -m pip install --user flake8 pytest
 
       - name: Code style check
-        run: python3 flake8 --verbose --config=setup.cfg --exit-zero .
+        run: flake8 --verbose --config=setup.cfg --exit-zero .
 
       - name: Test codebase
-        run: python3 pytest -v -s
+        run: pytest -v -s
