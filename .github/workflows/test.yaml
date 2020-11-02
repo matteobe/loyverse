@@ -27,3 +27,5 @@ jobs:
 
       - name: Test codebase
         run: python3 -m pytest -v -s
+        env:
+          LOYVERSE_ACCESS_TOKEN: ${{ secrets.loyverse_access_token }}
