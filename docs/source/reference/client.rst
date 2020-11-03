@@ -4,10 +4,3 @@ Client
 
 .. autoclass:: Client
     :members:
-
-Api
-----
-.. automodule:: loyverse.api
-
-.. autoclass:: Api
-    :members:

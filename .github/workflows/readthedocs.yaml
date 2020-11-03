@@ -1,0 +1,32 @@
+# Build documentation of ReadTheDocs
+
+name: Documentation on ReadTheDocs
+# TODO: Check running criteria for script
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  document:
+    name: Documentation on ReadTheDocs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - name: Retrieve package version
+        run: |
+          VERSION_STR=$(grep -m 1 VERSION setup.py)
+          VERSION_STR=${VERSION_STR//[ \']/}
+          echo "$VERSION_STR" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Trigger documentation build
+        run: curl \
+          -X POST \
+          -H "Authorization: Token $TOKEN" https://readthedocs.org/api/v3/projects/$PROJECT/versions/$VERSION/builds/
+        env:
+          VERSION:
+          PROJECT: 'loyverse'
+          TOKEN: ${{ secrets.readthedocs_token }}

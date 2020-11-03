@@ -3,7 +3,7 @@ from setuptools import setup
 
 # Project
 NAME = 'loyverse'
-VERSION = '0.0.4'
+VERSION = '0.0.5'
 
 # Maintainer
 MAINTAINER = 'Matteo Berchier'
