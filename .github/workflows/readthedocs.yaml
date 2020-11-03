@@ -23,10 +23,9 @@ jobs:
         shell: bash
 
       - name: Trigger documentation build
-        run: curl \
-          -X POST \
-          -H "Authorization: Token $TOKEN" https://readthedocs.org/api/v3/projects/$PROJECT/versions/$VERSION/builds/
+        run: |
+          curl -X POST --header \
+          "Authorization: Token $TOKEN" https://readthedocs.org/api/v3/projects/$PROJECT/versions/$VERSION/builds/
         env:
-          VERSION:
           PROJECT: 'loyverse'
           TOKEN: ${{ secrets.readthedocs_token }}
