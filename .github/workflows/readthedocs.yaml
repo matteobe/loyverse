@@ -26,6 +26,7 @@ jobs:
         run: |
           RESPONSE=$(curl -X POST --header \
           "Authorization: Token $TOKEN" https://readthedocs.org/api/v3/projects/$PROJECT/versions/latest/builds/)
+          echo "RESPONSE=$RESPONSE" >> $GITHUB_ENV
         env:
           PROJECT: 'loyverse'
           TOKEN: ${{ secrets.readthedocs_token }}
