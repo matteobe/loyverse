@@ -6,6 +6,7 @@ Tests:
 * test_get_by_date: testing get_by_date function
 """
 
+import pytest
 from datetime import datetime
 from loyverse import Client
 from loyverse.utils.dates import add_timezone
@@ -15,6 +16,7 @@ from tests.utils import error_msg
 endpoint = 'receipts'
 
 
+@pytest.mark.vcr()
 def test_get_by_id():
     """
     Test Client.receipts get_by_id endpoint function
@@ -30,6 +32,7 @@ def test_get_by_id():
     assert receipt['receipt_number'] == receipt_id, error_msg(endpoint, 'receipt ID should be in the response')
 
 
+@pytest.mark.vcr()
 def test_get_by_date():
     """
     Test Client.receipts get_by_date endpoint function

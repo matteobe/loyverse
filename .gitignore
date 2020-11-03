@@ -3,9 +3,9 @@
 .idea
 
 # Testing
-tests/results
-tests/notebooks
 .pytest_cache
+tests/cassettes
+tests/notebooks
 
 # Documentation
 docs/build

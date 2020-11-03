@@ -27,7 +27,9 @@ class Receipts:
         Retrieves receipts that respect the specific query criteria passed in
 
         Args:
-            **kwargs:  all possible value-pairs that can be used to query the list
+            **kwargs:  all possible value-pairs that can be used to query the list.
+                A detailed description of the query parameters is available
+                `here <
         Returns:
             response (dict): un-formatted receipts information (JSON)
         """

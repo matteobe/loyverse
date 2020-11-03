@@ -7,6 +7,9 @@ import os
 import requests
 from loyverse.exceptions import AccessTokenMissingError
 
+# TODO: Implement throttling of requests to stay below limits
+# TODO: Implement multiple requests for requests exceeding limit of 250
+
 
 class Api:
     """Base API properties for all endpoints"""

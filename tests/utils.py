@@ -3,7 +3,7 @@ Common test utilities
 """
 
 import json
-from tests import results_dir
+from tests import cassettes_dir
 
 
 def save_json(response: dict, filename: str) -> None:
@@ -14,7 +14,7 @@ def save_json(response: dict, filename: str) -> None:
         filename (str): name of file to store the response to
     """
 
-    with open(f'{results_dir}/{filename}.json', 'w') as f:
+    with open(f'{cassettes_dir}/{filename}.json', 'w') as f:
         json.dump(response, f, indent=4, sort_keys=False)
 
     return None
