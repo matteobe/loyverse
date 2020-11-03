@@ -29,13 +29,14 @@ class Receipts:
         Args:
             **kwargs:  all possible value-pairs that can be used to query the list.
                 A detailed description of the query parameters is available
-                `here <
+                `here <https://developer.loyverse.com/docs/#tag/Receipts/paths/~1receipts/get>`_.
         Returns:
-            response (dict): un-formatted receipts information (JSON)
+            response (dict): formatted receipts information (JSON)
         """
-        # TODO: List the query parameters
 
-        return self._api.request('GET', self._path, params=kwargs)
+        response = self._api.request('GET', self._path, params=kwargs)
+
+        return response
 
     def get_by_id(self, receipt_id: str):
         """
@@ -44,7 +45,7 @@ class Receipts:
         Args:
             receipt_id (str): string uniquely identifying the receipt to be retrieved
         Returns:
-            response (dict): un-formatted receipt information (JSON)
+            response (dict): formatted receipt information (JSON)
         """
 
         return self._api.request('GET', f'{self._path}/{receipt_id}')
@@ -56,13 +57,13 @@ class Receipts:
         Args:
             date (datetime): datetime object representing day in question (including time zone info)
         Returns:
-            response (dict): un-formatted receipts information (JSON)
+            response (dict): formatted receipts information (JSON)
         """
 
         timestamp_start = utc_isoformat(day_start(date))
         timestamp_end = utc_isoformat(day_end(date))
         data = self.get_by_query(created_at_min=timestamp_start,
-                                 created_at_max=timestamp_end
+                                 created_at_max=timestamp_end,
                                  )
         return data
 
@@ -74,7 +75,7 @@ class Receipts:
             start_date (datetime): start date, including time-zone info
             end_date (datetime): end date, including time-zone info (if not provided, defaults to UTC now)
         Returns:
-            response (dict): un-formatted receipts information (JSON)
+            response (dict): formatted receipts information (JSON)
         """
 
         if end_date is None:
