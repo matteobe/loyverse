@@ -5,7 +5,8 @@ name: Document on ReadTheDocs
 on:
   push:
     branches:
-      - dev
+      - readthedocs
+      - master
 
 jobs:
   document:
@@ -15,22 +16,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@master
 
-      - name: Retrieve package version
-        run: |
-          VERSION_STR=$(grep -m 1 VERSION setup.py)
-          VERSION_STR=${VERSION_STR//[ \']/}
-          echo "$VERSION_STR" >> $GITHUB_ENV
-        shell: bash
+      - name: Setup Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Install required packages
+        run: python3 -m pip install --user --upgrade requests
 
       - name: Trigger documentation build
         run: |
-          RESPONSE=$(curl -X POST --header \
-          "Authorization: Token $TOKEN" https://readthedocs.org/api/v3/projects/$PROJECT/versions/latest/builds/)
-          echo "RESPONSE=$RESPONSE" >> $GITHUB_ENV
+          python3 .github/workflows/readthedocs.py
         env:
-          PROJECT: 'loyverse'
-          TOKEN: ${{ secrets.readthedocs_token }}
-
-      - name: Check curl response
-        run: |
-          echo $RESPONSE
+          READTHEDOCS_TOKEN: ${{ secrets.readthedocs_token }}

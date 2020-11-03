@@ -5,6 +5,7 @@ on:
   push:
     branches-ignore:
       - master
+      - readthedocs
 
 jobs:
   test:
