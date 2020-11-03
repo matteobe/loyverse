@@ -10,8 +10,9 @@ Actions:
 """
 
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 from loyverse.api import Api
+from loyverse.utils.dates import utc_isoformat, day_start, day_end
 from loyverse.endpoints.fields import receipt as fields
 
 
@@ -26,13 +27,16 @@ class Receipts:
         Retrieves receipts that respect the specific query criteria passed in
 
         Args:
-            **kwargs:  all possible value-pairs that can be used to query the list
+            **kwargs:  all possible value-pairs that can be used to query the list.
+                A detailed description of the query parameters is available
+                `here <https://developer.loyverse.com/docs/#tag/Receipts/paths/~1receipts/get>`_.
         Returns:
-            response (dict): un-formatted receipts information (JSON)
+            response (dict): formatted receipts information (JSON)
         """
-        # TODO: List the query parameters
 
-        return self._api.request('GET', self._path, params=kwargs)
+        response = self._api.request('GET', self._path, params=kwargs)
+
+        return response
 
     def get_by_id(self, receipt_id: str):
         """
@@ -41,7 +45,7 @@ class Receipts:
         Args:
             receipt_id (str): string uniquely identifying the receipt to be retrieved
         Returns:
-            response (dict): un-formatted receipt information (JSON)
+            response (dict): formatted receipt information (JSON)
         """
 
         return self._api.request('GET', f'{self._path}/{receipt_id}')
@@ -53,30 +57,37 @@ class Receipts:
         Args:
             date (datetime): datetime object representing day in question (including time zone info)
         Returns:
-            response (dict): un-formatted receipts information (JSON)
+            response (dict): formatted receipts information (JSON)
         """
 
-        timestamp_start = f"{date.strftime('%Y-%m-%d')}T00:00:00.000Z"
-        timestamp_end = f"{date.strftime('%Y-%m-%d')}T23:59:59.999Z"
+        timestamp_start = utc_isoformat(day_start(date))
+        timestamp_end = utc_isoformat(day_end(date))
         data = self.get_by_query(created_at_min=timestamp_start,
-                                 created_at_max=timestamp_end
+                                 created_at_max=timestamp_end,
                                  )
         return data
 
-    def get_by_dates(self, start_date: datetime, end_date: datetime = datetime.now()):
+    def get_by_dates(self, start_date: datetime, end_date: datetime = None):
         """
         Retrieves receipts information for a specific date interval.
 
         Args:
             start_date (datetime): start date, including time-zone info
-            end_date (datetime): end date, including time-zone info (if not provided, defaults to datetime.now())
+            end_date (datetime): end date, including time-zone info (if not provided, defaults to UTC now)
         Returns:
-            response (dict): un-formatted receipts information (JSON)
+            response (dict): formatted receipts information (JSON)
         """
 
-        timestamp = f"{start_date.strftime('%Y-%m-%d')}T00:00:00.000Z"
+        if end_date is None:
+            end_date = datetime.now(timezone.utc)
 
-        return self.get_by_query(created_at_min=timestamp)
+        timestamp_start = utc_isoformat(day_start(start_date))
+        timestamp_end = utc_isoformat(end_date)
+
+        data = self.get_by_query(created_at_min=timestamp_start,
+                                 created_at_max=timestamp_end
+                                 )
+        return data
 
     @staticmethod
     def _receipt_to_dataframes(receipt: dict):

@@ -14,3 +14,4 @@ All classes and functions exposed in ``loyverse.*`` namespace are public.
     client
     customers
     receipts
+    utils

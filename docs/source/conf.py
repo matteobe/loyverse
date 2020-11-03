@@ -29,6 +29,7 @@ extensions = [
 
 # Autodoc configurations
 autoclass_content = 'class'
+autodoc_member_order = 'bysource'
 
 # Napoleon configurations
 napoleon_google_docstring = True
@@ -69,7 +70,7 @@ html_context = {
     'github_user': 'matteobe',
     'github_repo': 'loyverse',
     'github_version': 'master',
-    'doc_path': 'docs/source'
+    'doc_path': 'docs/source',
 }
 
 # HTML theme options --------------------------------------------------------

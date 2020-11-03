@@ -3,7 +3,7 @@ from setuptools import setup
 
 # Project
 NAME = 'loyverse'
-VERSION = '0.0.4'
+VERSION = '0.0.5'
 
 # Maintainer
 MAINTAINER = 'Matteo Berchier'
@@ -29,12 +29,12 @@ DOWNLOAD_URL = ''
 
 # Classifiers
 CLASSIFIERS = [
-      "Development Status :: 2 - Pre-Alpha",
-      "Environment :: Console",
-      "Operating System :: OS Independent",
-      "Intended Audience:: Developers",
-      "Programming Language :: Python",
-      "Programming Language :: Python :: 3.7",
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "Intended Audience:: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.7",
 ]
 
 # Package definition
@@ -43,7 +43,7 @@ setup(name=NAME,
       description='Loyverse API wrapper',
       url=HOMEPAGE,
       packages=[
-            'loyverse'
+          'loyverse',
       ],
       maintainer=MAINTAINER,
       maintainer_email=MAINTAINER_EMAIL,
