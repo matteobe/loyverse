@@ -1,6 +1,6 @@
 # Build documentation of ReadTheDocs
 
-name: Documentation on ReadTheDocs
+name: Document on ReadTheDocs
 # TODO: Check running criteria for script
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   document:
-    name: Documentation on ReadTheDocs
+    name: Documentation build on ReadTheDocs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -24,8 +24,12 @@ jobs:
 
       - name: Trigger documentation build
         run: |
-          curl -X POST --header \
-          "Authorization: Token $TOKEN" https://readthedocs.org/api/v3/projects/$PROJECT/versions/$VERSION/builds/
+          RESPONSE=$(curl -X POST --header \
+          "Authorization: Token $TOKEN" https://readthedocs.org/api/v3/projects/$PROJECT/versions/latest/builds/)
         env:
           PROJECT: 'loyverse'
           TOKEN: ${{ secrets.readthedocs_token }}
+
+      - name: Check curl response
+        run: |
+          echo $RESPONSE
