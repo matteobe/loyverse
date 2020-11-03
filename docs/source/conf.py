@@ -29,6 +29,7 @@ extensions = [
 
 # Autodoc configurations
 autoclass_content = 'class'
+autodoc_member_order = 'bysource'
 
 # Napoleon configurations
 napoleon_google_docstring = True
