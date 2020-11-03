@@ -10,8 +10,9 @@ Actions:
 """
 
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 from loyverse.api import Api
+from loyverse.utils.dates import utc_isoformat, day_start, day_end
 from loyverse.endpoints.fields import receipt as fields
 
 
@@ -56,27 +57,34 @@ class Receipts:
             response (dict): un-formatted receipts information (JSON)
         """
 
-        timestamp_start = f"{date.strftime('%Y-%m-%d')}T00:00:00.000Z"
-        timestamp_end = f"{date.strftime('%Y-%m-%d')}T23:59:59.999Z"
+        timestamp_start = utc_isoformat(day_start(date))
+        timestamp_end = utc_isoformat(day_end(date))
         data = self.get_by_query(created_at_min=timestamp_start,
                                  created_at_max=timestamp_end
                                  )
         return data
 
-    def get_by_dates(self, start_date: datetime, end_date: datetime = datetime.now()):
+    def get_by_dates(self, start_date: datetime, end_date: datetime = None):
         """
         Retrieves receipts information for a specific date interval.
 
         Args:
             start_date (datetime): start date, including time-zone info
-            end_date (datetime): end date, including time-zone info (if not provided, defaults to datetime.now())
+            end_date (datetime): end date, including time-zone info (if not provided, defaults to UTC now)
         Returns:
             response (dict): un-formatted receipts information (JSON)
         """
 
-        timestamp = f"{start_date.strftime('%Y-%m-%d')}T00:00:00.000Z"
+        if end_date is None:
+            end_date = datetime.now(timezone.utc)
 
-        return self.get_by_query(created_at_min=timestamp)
+        timestamp_start = utc_isoformat(day_start(start_date))
+        timestamp_end = utc_isoformat(end_date)
+
+        data = self.get_by_query(created_at_min=timestamp_start,
+                                 created_at_max=timestamp_end
+                                 )
+        return data
 
     @staticmethod
     def _receipt_to_dataframes(receipt: dict):

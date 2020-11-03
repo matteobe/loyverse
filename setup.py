@@ -43,7 +43,7 @@ setup(name=NAME,
       description='Loyverse API wrapper',
       url=HOMEPAGE,
       packages=[
-          'loyverse'
+          'loyverse',
       ],
       maintainer=MAINTAINER,
       maintainer_email=MAINTAINER_EMAIL,

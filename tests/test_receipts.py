@@ -8,6 +8,7 @@ Tests:
 
 from datetime import datetime
 from loyverse import Client
+from loyverse.utils.dates import add_timezone
 from tests.utils import error_msg
 
 
@@ -34,12 +35,15 @@ def test_get_by_date():
     Test Client.receipts get_by_date endpoint function
     """
 
-    # Expected results
+    # Query arguments
     date = datetime(2020, 10, 12)
+    date_tz = add_timezone(date, 'Europe/Zurich')
+
+    # Expected results
     receipts_length = 40
 
     client = Client()
-    receipts = client.receipts.get_by_date(date)
+    receipts = client.receipts.get_by_date(date_tz)
 
     assert isinstance(receipts, dict), error_msg(endpoint, 'get_by_date return type not of type dict')
     assert len(receipts['receipts']) == receipts_length, error_msg(endpoint, 'get_by_date: incorrect number of '
