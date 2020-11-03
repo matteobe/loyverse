@@ -4,8 +4,8 @@ name: Lint and test code
 on:
   push:
     branches-ignore:
-      - dev
       - master
+      - readthedocs
 
 jobs:
   test:
