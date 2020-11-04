@@ -1,5 +1,6 @@
 # Check code style and test package
 
+# TODO: Fix problem: gets triggered on pull request to staging from dev
 name: Lint and test code
 on:
   push:

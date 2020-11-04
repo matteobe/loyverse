@@ -54,6 +54,7 @@ setup(name=NAME,
       project_urls=PROJECT_URLS,
       python_requires='>3.7.0',
       install_requires=[
+          'pytz',
           'requests',
           'python-dotenv',
           'pandas',
