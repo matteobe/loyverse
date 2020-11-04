@@ -5,8 +5,9 @@ name: Document on ReadTheDocs
 on:
   push:
     branches:
-      - readthedocs
       - master
+      - staging
+      - readthedocs
 
 jobs:
   document:
