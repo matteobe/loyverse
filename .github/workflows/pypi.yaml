@@ -1,7 +1,6 @@
 # Publish package to PyPi
 
 name: Build and publish to PyPi
-# TODO: Check running criteria for script
 on:
   push:
     tags:
@@ -30,4 +29,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
-          # password: ${{ secrets.pypi_all }}
+          password: ${{ secrets.pypi_all }}
