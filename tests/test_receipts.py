@@ -67,7 +67,7 @@ def test_get_receipts_by_dates():
     end_date = add_timezone(datetime(2020, 10, 1), timezone)
 
     # Expected results
-    receipts_length = 1143
+    receipts_length = 1189
 
     client = Client()
     receipts = client.receipts.get_by_dates(start_date, end_date)
