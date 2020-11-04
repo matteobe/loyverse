@@ -5,9 +5,10 @@ name: Document on ReadTheDocs
 on:
   push:
     branches:
-      - master
       - staging
       - readthedocs
+    tags:
+      - v*
 
 jobs:
   document:
