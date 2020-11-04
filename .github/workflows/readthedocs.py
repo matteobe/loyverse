@@ -48,7 +48,16 @@ def build_status(build_id: str) -> str:
 
 
 def main():
-    response = requests.post(f'{URL}/versions/latest/builds/', headers=HEADERS)
+    branch = os.getenv('GITHUB_REF')
+
+    if branch[:11] == 'refs/tags/v':
+        version = 'latest'
+    elif branch == 'refs/heads/staging':
+        version = 'staging'
+    else:
+        raise ValueError(f'Passed in GITHUB_REF={branch} is not valid.')
+
+    response = requests.post(f'{URL}/versions/{version}/builds/', headers=HEADERS)
     response = response.json()
 
     if response['triggered']:

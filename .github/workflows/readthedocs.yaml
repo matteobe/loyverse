@@ -1,13 +1,12 @@
 # Build documentation of ReadTheDocs
 
 name: Document on ReadTheDocs
-# TODO: Check running criteria for script
 on:
   push:
+    tags:
+      - v*
     branches:
-      - master
       - staging
-      - readthedocs
 
 jobs:
   document:
@@ -29,4 +28,5 @@ jobs:
         run: |
           python3 .github/workflows/readthedocs.py
         env:
+          BRANCH:
           READTHEDOCS_TOKEN: ${{ secrets.readthedocs_token }}
