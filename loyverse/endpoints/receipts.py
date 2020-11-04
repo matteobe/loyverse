@@ -1,12 +1,12 @@
 """
 Receipts endpoint wrapper class
 
-Actions:
+Possible requests:
 
 * get_by_query: get receipts that respect passed in query parameters
-* get_by_id: get receipt passing valid ID
+* get_by_id: get receipt with a given ID
 * get_by_date: get receipts for a given date
-* get_by_dates: get receipts between two dates (if end-date is left empty, then it returns receipts until present day)
+* get_by_dates: get receipts between two dates
 """
 
 import pandas as pd
@@ -22,23 +22,75 @@ class Receipts:
         self._api = api
         self._path = 'receipts'
 
-    def get_by_query(self, **kwargs):
+    def get_by_query(self, receipt_numbers: list = None, since_receipt_number: str = None,
+                     before_receipt_number: str = None, store_id: str = None, order: str = None, source: str = None,
+                     updated_at_min: datetime = None, updated_at_max: datetime = None,
+                     created_at_min: datetime = None, created_at_max: datetime = None, limit: int = 250,
+                     cursor: str = None) -> dict:
         """
-        Retrieves receipts that respect the specific query criteria passed in
+        Retrieves receipts that respect the specific query criteria passed in. A detailed description of the query 
+        parameters is available `here <https://developer.loyverse.com/docs/#tag/Receipts/paths/~1receipts/get>`_.
 
         Args:
-            **kwargs:  all possible value-pairs that can be used to query the list.
-                A detailed description of the query parameters is available
-                `here <https://developer.loyverse.com/docs/#tag/Receipts/paths/~1receipts/get>`_.
+            receipt_numbers (list): filter receipts by receipt numbers
+            since_receipt_number (str): return only receipts after this receipt number
+            before_receipt_number (str): return only receipts before this receipt number
+            store_id (str): filter receipts by store id
+            order (str): filter receipts by order
+            source (str): filter receipts by source (e.g. My app)
+            updated_at_min (datetime): filter receipts updated after this date (includes timezone info)
+            updated_at_max (datetime): filter receipts updated before this date (includes timezone info)
+            created_at_min (datetime): filter receipts created after this date (includes timezone info)
+            created_at_max (datetime): filter receipts created before this date (includes timezone info)
+            limit (int): maximum number of receipts to return per request (1 to 250)
+            cursor (str): token to get continuation of return list for requests exceeding limits
         Returns:
             response (dict): formatted receipts information (JSON)
         """
 
-        response = self._api.request('GET', self._path, params=kwargs)
+        params = dict()
+
+        if receipt_numbers is not None:
+            params['receipt_numbers'] = ','.join(receipt_numbers)
+
+        if since_receipt_number is not None:
+            params['since_receipt_number'] = since_receipt_number
+
+        if before_receipt_number is not None:
+            params['before_receipt_number'] = before_receipt_number
+
+        if store_id is not None:
+            params['store_id'] = store_id
+
+        if order is not None:
+            params['order'] = order
+
+        if source is not None:
+            params['source'] = source
+
+        if updated_at_min is not None:
+            params['updated_at_min'] = utc_isoformat(updated_at_min)
+
+        if updated_at_max is not None:
+            params['updated_at_max'] = utc_isoformat(updated_at_max)
+
+        if created_at_min is not None:
+            params['created_at_min'] = utc_isoformat(created_at_min)
+
+        if created_at_max is not None:
+            params['created_at_max'] = utc_isoformat(created_at_max)
+
+        if limit is not None:
+            params['limit'] = limit
+
+        if cursor is not None:
+            params['cursor'] = cursor
+
+        response = self._api.request('GET', self._path, params=params)
 
         return response
 
-    def get_by_id(self, receipt_id: str):
+    def get_by_id(self, receipt_id: str) -> dict:
         """
         Retrieves the receipts information for a specific receipt ID
 
@@ -50,7 +102,7 @@ class Receipts:
 
         return self._api.request('GET', f'{self._path}/{receipt_id}')
 
-    def get_by_date(self, date: datetime):
+    def get_by_date(self, date: datetime) -> dict:
         """
         Retrieve receipts information for a specific day
 
@@ -60,14 +112,12 @@ class Receipts:
             response (dict): formatted receipts information (JSON)
         """
 
-        timestamp_start = utc_isoformat(day_start(date))
-        timestamp_end = utc_isoformat(day_end(date))
-        data = self.get_by_query(created_at_min=timestamp_start,
-                                 created_at_max=timestamp_end,
+        data = self.get_by_query(created_at_min=day_start(date),
+                                 created_at_max=day_end(date),
                                  )
         return data
 
-    def get_by_dates(self, start_date: datetime, end_date: datetime = None):
+    def get_by_dates(self, start_date: datetime, end_date: datetime = None) -> dict:
         """
         Retrieves receipts information for a specific date interval.
 
@@ -81,11 +131,8 @@ class Receipts:
         if end_date is None:
             end_date = datetime.now(timezone.utc)
 
-        timestamp_start = utc_isoformat(day_start(start_date))
-        timestamp_end = utc_isoformat(end_date)
-
-        data = self.get_by_query(created_at_min=timestamp_start,
-                                 created_at_max=timestamp_end
+        data = self.get_by_query(created_at_min=day_start(start_date),
+                                 created_at_max=day_end(end_date),
                                  )
         return data
 
