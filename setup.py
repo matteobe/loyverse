@@ -11,7 +11,7 @@ MAINTAINER_EMAIL = 'maberchier@gmail.com'
 
 # Long description
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'PYPI.md'), encoding='utf-8') as f:
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
 # License
@@ -45,6 +45,8 @@ setup(name=NAME,
       packages=[
           'loyverse',
       ],
+      author=MAINTAINER,
+      author_email=MAINTAINER_EMAIL,
       maintainer=MAINTAINER,
       maintainer_email=MAINTAINER_EMAIL,
       license=LICENSE,

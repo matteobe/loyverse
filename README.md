@@ -1,32 +1,69 @@
 # Loyverse API wrapper
 
-[![PyPi Latest Release](https://img.shields.io/pypi/v/loyverse)](https://img.shields.io/pypi/v/loyverse)
-[![PyPI - Status](https://img.shields.io/pypi/status/loyverse)](https://img.shields.io/pypi/status/loyverse)
+[![PyPi Latest Release](https://img.shields.io/pypi/v/loyverse)](https://pypi.org/project/loyverse/)
+[![PyPI - Status](https://img.shields.io/pypi/status/loyverse)](https://pypi.org/project/loyverse/)
 [![GitHub Release Date](https://img.shields.io/github/release-date/matteobe/loyverse)](https://img.shields.io/github/release-date/matteobe/loyverse)
 [![Documentation Status](https://readthedocs.org/projects/loyverse/badge/?version=latest)](https://loyverse.readthedocs.io/en/latest/?badge=latest)
-[![License](https://img.shields.io/github/license/matteobe/loyverse)](https://img.shields.io/github/license/matteobe/loyverse)
-[![GitHub All Releases](https://img.shields.io/github/downloads/matteobe/loyverse/total)](https://img.shields.io/github/downloads/matteobe/loyverse/total)
+[![License](https://img.shields.io/github/license/matteobe/loyverse)](https://github.com/matteobe/loyverse/blob/master/LICENSE)
+[![PyPi Downloads](https://img.shields.io/pypi/dm/loyverse)](https://pypistats.org/packages/loyverse)
 
-The loyverse package provides a wrapper around the Loyverse API (v1.0).
+The loyverse package provides a wrapper around the [Loyverse API v1.0](https://developer.loyverse.com/docs/).
+It is intended to help Loyverse users to access their data using Python, without the need for boilerplate code. 
+Furthermore, the package provides tools to convert the API responses into 
+[pandas](https://pandas.pydata.org/pandas-docs/stable/index.html) DataFrames for easier manipulation. 
 
-Currently the package implements the following endpoints:
+## Getting started
+The package relies on a central Client object to access all available endpoints. 
+To start a new client, the user either needs to provide the access token explicitly, or store it in the environmental 
+variables under LOYVERSE_ACCESS_TOKEN. For how to generate your access token, please check 
+[here](https://help.loyverse.com/help/loyverse-api#:~:text=To%20create%20a%20new%20token,Access%20token%20will%20be%20created.).
+
+The example below shows how to initialize a client object:
+
+```python
+from loyverse import Client
+
+# Pass API access token explicitly
+client = Client(access_token='your_access_token')
+
+# Pass API access token using an environment variable LOYVERSE_ACCESS_TOKEN
+client = Client()
+```
+
+## Access endpoints
+
+All exposed API endpoints are available as properties of the Client class (i.e. client.endpoint). Currently, the
+following endpoints are implemented:
+
 * Customers
 * Receipts
 
-## Getting started
+The example below shows how to retrieve receipts information for a specific date:
 
+```python
+from datetime import datetime
+from loyverse import Client
+from loyverse.utils.dates import add_timezone
 
-### Setup
-#### Documentation
-After cloning into the repository, the user can compile the documentation using the following terminal commands:
-```bash
-cd docs
-make html
+# Initialize client
+client = Client(access_token='your_access_token')
+
+# Retrieve receipt data for a specific receipt
+receipt_id = 'XXXX'
+response = client.receipts.get_by_id(receipt_id)
+
+# Retrieve receipts data for a specific date (timezone-aware)
+target_date = add_timezone(datetime(2020, 10, 31), 'Europe/Zurich')
+response = client.receipts.get_by_date(target_date)
+
+# Retrieve receipts data for a specific date range (timezone-aware)
+start_date = add_timezone(datetime(2020, 10, 31, 12, 0), 'Europe/Zurich')
+end_date = add_timezone(datetime(2020, 11, 4, 12, 0), 'Europe/Zurich')
+
+# Convert to dataframes
+receipts, items, payments = client.receipts.to_dataframes(response)
 ```
-To view the documentation, open the following [file](docs/build/html/index.html).
 
-#### Secrets
-The API needs access to the following environment variables to work:
-* LOYVERSE_ACCESS_TOKEN: access token as defined on the Loyverse Website
-
-These environment variables can be pre-defined in a an .env file that can be loaded using the python-dotenv package.
+## Contribute
+Everyone is welcomed to contribute to this project. Please read the contribution guidelines 
+[here](https://github.com/matteobe/loyverse/blob/master/CONTRIBUTING.md) for more details. 
