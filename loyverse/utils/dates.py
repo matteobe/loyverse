@@ -30,7 +30,7 @@ def utc_isoformat(date: datetime, timezone_id: str = None) -> str:
     Format datetime object using the ISO8601 format to UTC timezone
 
     Args:
-        date (datetime): date + time to be converted into ISO8601 format
+        date (datetime): date + time to be converted into ISO8601 format (can be timezone aware).
         timezone_id (str): timezone identifier to be used for conversion to UTC time (e.g. Europe/Zurich).
             For a list of available identifiers, check the
             `tz database <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`_.

@@ -1,6 +1,6 @@
 # Publish package to PyPi
 
-# TODO: Fix problem: gets triggered when rebasing dev from master
+# TODO: Fix problem: gets triggered when rebasing dev from master (on tag v0.1.0)
 name: Build and publish to PyPi
 on:
   push:
