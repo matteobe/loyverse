@@ -29,5 +29,4 @@ jobs:
         run: |
           python3 .github/workflows/readthedocs.py
         env:
-          BRANCH:
           READTHEDOCS_TOKEN: ${{ secrets.readthedocs_token }}

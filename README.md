@@ -1,11 +1,17 @@
 # Loyverse API wrapper
 
 [![PyPi Latest Release](https://img.shields.io/pypi/v/loyverse)](https://pypi.org/project/loyverse/)
-[![PyPI - Status](https://img.shields.io/pypi/status/loyverse)](https://pypi.org/project/loyverse/)
+[![PyPi - Status](https://img.shields.io/pypi/status/loyverse)](https://pypi.org/project/loyverse/)
 [![GitHub Release Date](https://img.shields.io/github/release-date/matteobe/loyverse)](https://img.shields.io/github/release-date/matteobe/loyverse)
+[![PyPi Downloads](https://img.shields.io/pypi/dm/loyverse)](https://pypistats.org/packages/loyverse)
+
+[![Loyverse API version](https://img.shields.io/badge/API-v1.0-yellow.svg)](https://shields.io/)
 [![Documentation Status](https://readthedocs.org/projects/loyverse/badge/?version=latest)](https://loyverse.readthedocs.io/en/latest/?badge=latest)
 [![License](https://img.shields.io/github/license/matteobe/loyverse)](https://github.com/matteobe/loyverse/blob/master/LICENSE)
-[![PyPi Downloads](https://img.shields.io/pypi/dm/loyverse)](https://pypistats.org/packages/loyverse)
+
+[![Made with python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![Made with sphinx](https://img.shields.io/badge/Made%20with-Sphinx-1f425f.svg)](https://www.sphinx-doc.org/)
+
 
 The loyverse package provides a wrapper around the [Loyverse API v1.0](https://developer.loyverse.com/docs/).
 It is intended to help Loyverse users to access their data using Python, without the need for boilerplate code. 
