@@ -5,14 +5,10 @@ from setuptools import setup
 NAME = 'loyverse'
 VERSION = '0.1.0'
 
-# Maintainer
+# Authors and maintainers
+AUTHORS = 'Matteo Berchier'
 MAINTAINER = 'Matteo Berchier'
 MAINTAINER_EMAIL = 'maberchier@gmail.com'
-
-# Long description
-this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
-    LONG_DESCRIPTION = f.read()
 
 # License
 LICENSE = 'MIT'
@@ -37,6 +33,16 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3.7",
 ]
 
+# Long description
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    LONG_DESCRIPTION = f.read()
+
+# TODO: Test if this works when pushing to TestPyPi on GitHub Actions
+# Install requirements
+with open(path.join(this_directory, 'requirements/production.txt'), encoding='utf-8') as f:
+    INSTALL_REQUIREMENTS = f.read().splitlines()
+
 # Package definition
 setup(name=NAME,
       version=VERSION,
@@ -55,12 +61,7 @@ setup(name=NAME,
       download_url=DOWNLOAD_URL,
       project_urls=PROJECT_URLS,
       python_requires='>3.7.0',
-      install_requires=[
-          'pytz',
-          'requests',
-          'python-dotenv',
-          'pandas',
-      ],
+      install_requires=INSTALL_REQUIREMENTS,
       include_package_data=True,
       zip_safe=False,
       )

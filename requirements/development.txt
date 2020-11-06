@@ -1,0 +1,11 @@
+# -------------- Requirements for development --------------- #
+# Production, testing and documentation packages
+-r production.txt
+-r testing.txt
+-r documentation.txt
+
+# Data science
+numpy>=1.19.4
+
+# Jupyter
+jupyter>=1.0.0

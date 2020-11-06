@@ -1,0 +1,7 @@
+# -------------- Requirements for documentation --------------- #
+# Production packages
+-r production.txt
+
+# Documentation
+sphinx>=3.3.0
+pydata-sphinx-theme>=0.4.1
