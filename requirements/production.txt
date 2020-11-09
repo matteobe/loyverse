@@ -1,14 +1,13 @@
 # -------------- Requirements for production --------------- #
 # API / Web interfaces
 requests>=2.24.0
-
+#
 # Timestamps
 pytz>=2020.4
-
+#
 # Data analysis
 pandas>=1.1.4
-
+#
 # Secrets management
 python-dotenv>=0.15.0
 # TODO: Implement git-secret system for storage of secrets alongside repository
-
